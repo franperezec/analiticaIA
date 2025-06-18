@@ -22,3 +22,7 @@ Clona el repositorio para acceder a todo el material:
 
 ```bash
 git clone https://github.com/franperezec/analiticaIA.git
+
+## ⚙️ Configuración
+
+Antes de usar los Jupyter Notebooks, configura tu entorno siguiendo la [Guía de Configuración](apuntes/configuracion-entorno.md).
