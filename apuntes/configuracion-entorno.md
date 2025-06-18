@@ -1,103 +1,201 @@
 # Guía Rápida: Preparando tu Entorno de Anaconda
 
-Este instructivo te guiará para verificar tu entorno de trabajo, tu versión de Python y para instalar las librerías necesarias para los ejercicios.
+Este instructivo te guiará para configurar tu entorno de trabajo con las librerías necesarias para los ejercicios. **Tienes dos opciones:**
 
-## Paso 1: Abrir Anaconda Prompt
+## 🔥 Opción A: Crear un Nuevo Entorno (Recomendado)
+## 🔧 Opción B: Usar un Entorno Existente
+
+---
+
+## Preparación Inicial
+
+### Paso 1: Abrir Anaconda Prompt
 
 Busca **"Anaconda Prompt"** en el menú de inicio de tu computadora y ábrelo. Verás una terminal o ventana de comandos.
 
-## Paso 2: Ver tus Entornos
+### Paso 2: Ver tus Entornos Actuales
 
-Para ver la lista de todos los entornos de Conda que tienes, escribe el siguiente comando y presiona `Enter`:
+Para ver la lista de todos los entornos de Conda que tienes:
 
 ```bash
 conda env list
 ```
 
-Verás una lista de tus entornos. El que está activo tendrá un asterisco (`*`) al lado. Generalmente, trabajarás en el entorno `base` a menos que hayas creado uno nuevo.
+Verás una lista de tus entornos. El que está activo tendrá un asterisco (`*`) al lado.
 
-## Paso 3: Activar tu Entorno de Trabajo
+---
 
-Si el entorno que quieres usar no está activo, actívalo con el siguiente comando. Reemplaza `<nombre_del_entorno>` con el nombre de tu entorno (por ejemplo, `base`).
+## 🔥 OPCIÓN A: Crear un Nuevo Entorno (Recomendado)
+
+### ¿Por qué crear un nuevo entorno?
+- Evita conflictos con otras instalaciones
+- Mantiene organizado tu trabajo
+- Fácil de eliminar si algo sale mal
+
+### Paso A1: Crear el Entorno
+
+Crea un entorno específico para el curso con Python 3.12:
 
 ```bash
-conda activate <nombre_del_entorno>
+conda create -n analitica-ia python=3.12
 ```
 
-## Paso 4: Comprobar la Versión de Python
+### Paso A2: Activar el Nuevo Entorno
 
-Ahora que tu entorno está activo, comprueba tu versión de Python. Los notebooks fueron creados con la versión 3.12.9, que viene en el entorno de Anaconda, pero cualquier versión moderna de Python 3 (3.8 en adelante) debería funcionar.
+```bash
+conda activate analitica-ia
+```
+
+### Paso A3: Instalar Todas las Librerías
+
+Instala todo lo necesario de una vez:
+
+```bash
+# Librerías básicas de data science
+conda install numpy pandas matplotlib seaborn scikit-learn
+
+# PyTorch para CPU (sin GPU)
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+
+# Jupyter y herramientas para notebooks
+conda install jupyter ipympl -c conda-forge
+```
+
+### Paso A4: Verificación
+
+```bash
+conda list
+python --version
+```
+
+---
+
+## 🔧 OPCIÓN B: Usar un Entorno Existente
+
+### Paso B1: Activar tu Entorno
+
+Activa el entorno que quieres usar (generalmente `base`):
+
+```bash
+conda activate base
+# O si tienes otro entorno:
+# conda activate <nombre_del_entorno>
+```
+
+### Paso B2: Verificar Python
+
+Comprueba que tienes Python 3.8 o superior:
 
 ```bash
 python --version
 ```
 
-Asegúrate de que la versión que aparece es una versión de Python 3.
+### Paso B3: Revisar Librerías Existentes
 
-## Paso 5: Revisar Paquetes Instalados
-
-Vamos a verificar si ya tienes `numpy` y `matplotlib`, que son muy comunes y suelen venir preinstalados. Ejecuta el siguiente comando para ver la lista completa de paquetes:
-
-```bash
-conda list
-```
-
-Puedes buscar en la lista o usar este comando para filtrar directamente:
+Verifica qué librerías ya tienes instaladas:
 
 ```bash
 conda list numpy
 conda list matplotlib
+conda list pytorch
 ```
 
-Si estos comandos te muestran los paquetes, ya están instalados. Si no, no te preocupes, los instalaremos en el siguiente paso.
+### Paso B4: Instalar Librerías Faltantes
 
-## Paso 6: Instalar las Librerías Faltantes
+Instala solo lo que te falte:
 
-Ahora, instala las librerías que necesitas para los ejercicios de redes neuronales.
+**Si no tienes las librerías básicas:**
+```bash
+conda install numpy pandas matplotlib seaborn scikit-learn
+```
 
-### 1. Instalar PyTorch (versión para CPU)
-
-El archivo `tensores1.ipynb` indica usar una versión de PyTorch que no requiere una tarjeta de video NVIDIA (GPU). Copia y pega el siguiente comando completo:
-
+**Si no tienes PyTorch:**
 ```bash
 conda install pytorch torchvision torchaudio cpuonly -c pytorch
 ```
 
-### 2. Instalar NumPy y Matplotlib (si faltaban)
-
-Si en el paso 5 descubriste que no los tenías, instálalos con:
-
+**Si no tienes Jupyter o ipympl:**
 ```bash
-conda install numpy matplotlib
+conda install jupyter ipympl -c conda-forge
 ```
 
-### 3. Instalar `ipympl` para Gráficos Interactivos
+---
 
-Esta librería es útil para las visualizaciones en los notebooks.
+## 🚀 Uso Posterior
 
+### Cómo activar tu entorno cada vez
+
+**Si creaste un nuevo entorno (Opción A):**
 ```bash
-conda install -c conda-forge ipympl
+conda activate analitica-ia
+jupyter notebook
 ```
 
-## Paso 7: Verificación Final
+**Si usas un entorno existente (Opción B):**
+```bash
+conda activate base  # o tu entorno elegido
+jupyter notebook
+```
 
-Una vez terminadas las instalaciones, puedes volver a ejecutar `conda list` para confirmar que `pytorch`, `torchvision` y `ipympl` aparecen ahora en tu lista de paquetes.
+### Verificación Final
+
+Independientemente de la opción elegida, verifica que todo esté instalado:
 
 ```bash
 conda list
+```
+
+### Probar en Python
+
+Abre Python y prueba que todo funcione:
+
+```bash
+python
+```
+
+Luego ejecuta:
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import torch
+print("¡Todo instalado correctamente!")
+exit()
 ```
 
 ## ✅ Librerías Requeridas
 
 Al finalizar, deberías tener instalado:
 
-- **Python 3.8+, recomendado 3.12.9 que viene en Anaconda**
-- **PyTorch** (versión CPU)
-- **TorchVision** 
-- **TorchAudio**
-- **NumPy**
-- **Matplotlib**
-- **ipympl**
+- **Python 3.8+** (recomendado 3.12)
+- **NumPy** - Cálculos numéricos
+- **Pandas** - Manipulación de datos
+- **Matplotlib** - Gráficos básicos
+- **Seaborn** - Gráficos estadísticos
+- **PyTorch** - Redes neuronales (versión CPU)
+- **TorchVision** - Visión computacional
+- **TorchAudio** - Procesamiento de audio
+- **Scikit-learn** - Machine learning
+- **Jupyter** - Notebooks interactivos
+- **ipympl** - Gráficos interactivos en notebooks
+
+---
+
+## 🆘 Solución de Problemas
+
+### Si algo falla:
+1. **Cierra** Anaconda Prompt
+2. **Abre** de nuevo como administrador
+3. **Repite** los comandos
+
+### Si los notebooks no abren:
+```bash
+conda install jupyter notebook
+```
+
+### Para eliminar un entorno (solo Opción A):
+```bash
+conda remove -n analitica-ia --all
+```
 
 ---
 
