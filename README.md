@@ -28,6 +28,11 @@ Este repositorio incluye material sobre:
 - Regresión lineal
 - Redes neuronales y tensores
 
+## Recursos de interés
+
+* **Optimización Numérica para Machine Learning**: Explora diversas técnicas de optimización numérica, como Nelder-Mead, Gradiente Descendente y Gradiente Conjugado, fundamentales en el ámbito del Machine Learning. Consulta el artículo en [Numerical Optimization: Understanding the Fundamentals](https://www.benfrederickson.com/numerical-optimization/).
+* **fmin - Librería de Optimización de Funciones (JavaScript)**: Un proyecto de código abierto que implementa algoritmos de minimización de funciones sin restricciones en JavaScript, incluyendo métodos como Nelder-Mead y Gradiente Conjugado No Lineal, con visualizaciones interactivas. Disponible en [GitHub: benfred/fmin](https://github.com/benfred/fmin).
+
 ## 🚀 Uso
 
 Clona el repositorio para acceder a todo el material:
