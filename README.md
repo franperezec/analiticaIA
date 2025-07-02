@@ -2,50 +2,78 @@
 
 Repositorio del curso de Analítica de Datos e Inteligencia Artificial.
 
-## ⚙️ Configuración
+---
 
-Antes de usar los Jupyter Notebooks, configura tu entorno siguiendo la [Guía de Configuración](apuntes/configuracion-entorno.md).
+## 📋 Tabla de Contenidos
 
-## 📁 Estructura
+* [Introducción](#introducción)
+* [Estructura General](#estructura-general)
+* [Uso](#uso)
+* [Recursos de Aprendizaje](#recursos-de-aprendizaje)
+* [Ejercicios Prácticos](#ejercicios-prácticos)
+* [Tecnologías](#tecnologías)
 
-- **apuntes/** - Notas, documentación y guías del curso
-  - Material de clase
-  - `configuracion-entorno.md` - Guía de instalación de librerías
-- **código/** - Notebooks con ejercicios prácticos
-  - `gradientes1.ipynb` - Ejercicios de gradientes
-  - `regresion_lineal_biva1.ipynb` - Regresión lineal bivariada
-  - `regresion_lineal_multiple.ipynb` - Regresión lineal múltiple
-  - `tensores1.ipynb` - Introducción a tensores con PyTorch
-- **Silabo Big Data 2025** - Programa oficial del curso
+---
 
-## 📖 Contenido
+## Introducción
 
-Este repositorio incluye material sobre:
-- Big Data
-- Machine Learning
-- Análisis de datos
-- Inteligencia Artificial
-- Regresión lineal
-- Redes neuronales y tensores
+Este repositorio agrupa todo el material del curso de Analítica de Datos e Inteligencia Artificial para estudiantes de ciencias sociales.
 
-## Recursos de interés
+## Estructura General
 
-* **Optimización Numérica para Machine Learning**: Explora diversas técnicas de optimización numérica, como Nelder-Mead, Gradiente Descendente y Gradiente Conjugado, fundamentales en el ámbito del Machine Learning. Consulta el artículo en [Numerical Optimization: Understanding the Fundamentals](https://www.benfrederickson.com/numerical-optimization/).
-* **fmin - Librería de Optimización de Funciones (JavaScript)**: Un proyecto de código abierto que implementa algoritmos de minimización de funciones sin restricciones en JavaScript, incluyendo métodos como Nelder-Mead y Gradiente Conjugado No Lineal, con visualizaciones interactivas. Disponible en [GitHub: benfred/fmin](https://github.com/benfred/fmin).
+```
+├── apuntes                        # Notas y documentación del curso
+├── código                         # Jupyter Notebooks con ejercicios prácticos
+├── ejercicios                     # Archivos de ejercicios (Excel, datos, etc.)
+├── README.md                      # Documentación principal
+└── Silabo Big Data 2025_final.pdf # Programa oficial del curso
+```
 
-## 🚀 Uso
+## Uso
 
-Clona el repositorio para acceder a todo el material:
+Clona el repositorio y accede a su contenido:
 
 ```bash
 git clone https://github.com/franperezec/analiticaIA.git
+cd analiticaIA
 ```
 
-## 🛠️ Tecnologías
+Para configurar tu entorno, consulta las guías de instalación en los enlaces de documentación (Anaconda: Mac, Windows o Linux).
 
-- Python 3.10+
-- PyTorch
-- NumPy
-- Matplotlib
-- Jupyter Notebooks
-- Anaconda/Miniconda
+## Recursos de Aprendizaje
+
+* **Video: SHAP with Python (Code and Explanations)**
+
+  * 🎥 [https://youtu.be/L8\_sVRhBDLU?si=jL4Ru65zecR4Y1Y9](https://youtu.be/L8_sVRhBDLU?si=jL4Ru65zecR4Y1Y9)
+  * Breve: Visualizaciones SHAP (waterfall, force, beeswarm, dependence) para interpretar modelos ML.
+
+* **Documentación SHAP**
+
+  * 📖 [https://shap.readthedocs.io/en/latest/](https://shap.readthedocs.io/en/latest/)
+  * Guía oficial y ejemplos de uso.
+
+* **Documentación AutoGluon**
+
+  * 📖 [https://auto.gluon.ai/stable/install.html#](https://auto.gluon.ai/stable/install.html#)
+  * Framework AutoML de Amazon.
+
+* **Lecturas Adicionales**
+
+  * *Optimización Numérica para ML*: [Numerical Optimization: Understanding the Fundamentals](https://www.benfrederickson.com/numerical-optimization/)
+  * *fmin (JavaScript)*: [GitHub: benfred/fmin](https://github.com/benfred/fmin)
+
+## Ejercicios Prácticos
+
+* Carpeta: `ejercicios/`
+* **Shapley 1.xlsx** (valor de Shapley en Excel)
+
+  * Enlace: [https://github.com/adalovelace-ec/analiticaIA/blob/main/ejercicios/Shapley%201.xlsx](https://github.com/adalovelace-ec/analiticaIA/blob/main/ejercicios/Shapley%201.xlsx)
+
+## Tecnologías
+
+* Python 3.10+
+* PyTorch
+* NumPy
+* Matplotlib
+* Jupyter Notebook
+* Anaconda / Miniconda
