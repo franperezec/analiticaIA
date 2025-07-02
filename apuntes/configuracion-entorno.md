@@ -200,3 +200,189 @@ conda remove -n analitica-ia --all
 ---
 
 ¡Listo! Tu entorno ya está configurado con todas las herramientas necesarias para comenzar a trabajar con los notebooks.
+
+---
+
+# 🚀 SECCIÓN AVANZADA: Herramientas de ML Especializadas
+
+Esta sección es **opcional** y está dirigida a usuarios que necesiten herramientas más avanzadas para:
+- **SHAP**: Explicar e interpretar modelos de Machine Learning
+- **AutoGluon**: Automatizar completamente el proceso de ML
+
+## 📊 SHAP - Interpretabilidad de Modelos
+
+**¿Qué es SHAP?** Herramienta para entender cómo tus modelos toman decisiones.
+
+**Documentación oficial:** https://anaconda.org/conda-forge/shap
+
+### Instalación de SHAP
+
+```bash
+# Activar tu entorno (el que creaste arriba o uno existente)
+conda activate analitica-ia
+
+# Instalar SHAP
+conda install conda-forge::shap
+```
+
+### Verificar instalación:
+```python
+import shap
+print("SHAP instalado correctamente")
+```
+
+---
+
+## 🤖 AutoGluon - Machine Learning Automatizado
+
+**¿Qué es AutoGluon?** Automatiza la creación, entrenamiento y optimización de modelos de ML.
+
+**Documentación oficial:** https://auto.gluon.ai/
+
+### Crear un Entorno Específico para AutoGluon
+
+AutoGluon funciona mejor con Python 3.11 y su propio entorno:
+
+```bash
+# Crear entorno específico para AutoGluon
+conda create -n autogluon-env python=3.11 -y
+conda activate autogluon-env
+```
+
+### Instalación para Windows (CPU)
+
+**Requisito:** Git instalado (https://git-scm.com/download/win)
+
+```bash
+# Instalar dependencias
+pip install uv
+python -m uv pip install -U torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu
+
+# Clonar e instalar AutoGluon completo
+git clone https://github.com/autogluon/autogluon
+cd autogluon && ./full_install.sh
+```
+
+### Instalación para Mac (CPU)
+
+```bash
+# Configurar libomp (importante para LightGBM)
+brew uninstall -f libomp
+wget https://raw.githubusercontent.com/Homebrew/homebrew-core/fb8323f2b170bd4ae97e1bac9bf3e2983af3fdb0/Formula/libomp.rb
+brew install libomp.rb
+rm libomp.rb
+
+# Preparar herramientas
+pip install -U pip
+pip install -U setuptools wheel
+
+# Clonar e instalar AutoGluon
+git clone https://github.com/autogluon/autogluon
+cd autogluon && ./full_install.sh
+```
+
+### Instalación Modular de AutoGluon
+
+Si no necesitas todas las funcionalidades, puedes instalar solo lo que necesites:
+
+#### 📊 Para Datos Tabulares (CSV, Excel, etc.)
+```bash
+# Instalación completa para tabular
+pip install autogluon.tabular[all]
+
+# O solo con modelos específicos
+pip install autogluon.tabular[lightgbm,catboost]
+```
+
+#### 📈 Para Series de Tiempo
+```bash
+pip install autogluon.timeseries
+```
+
+#### 🖼️ Para Imágenes y Texto (Multimodal)
+```bash
+pip install autogluon.multimodal
+
+# Para detección de objetos (opcional)
+mim install "mmcv==2.1.0"
+pip install "mmdet==3.2.0"
+pip install pycocotools  # En Windows: pip install pycocotools-windows
+```
+
+#### 🔧 Opciones Adicionales
+
+**Para modelos más rápidos (KNN 25x más rápido):**
+```bash
+pip install autogluon.tabular[all,skex]
+```
+
+**Para modelos interpretables:**
+```bash
+pip install autogluon.tabular[all,imodels]
+```
+
+**Para exportar modelos a ONNX:**
+```bash
+pip install autogluon.tabular[all,skl2onnx]
+```
+
+### Verificar instalación de AutoGluon:
+```python
+# Para tabular
+from autogluon.tabular import TabularPredictor
+print("AutoGluon Tabular instalado")
+
+# Para series de tiempo
+from autogluon.timeseries import TimeSeriesPredictor
+print("AutoGluon TimeSeries instalado")
+
+# Para multimodal
+from autogluon.multimodal import MultiModalPredictor
+print("AutoGluon MultiModal instalado")
+```
+
+---
+
+## 💡 Cuándo Usar Cada Herramienta
+
+### Usa SHAP cuando:
+- Necesites explicar las predicciones de tu modelo
+- Quieras identificar qué variables son más importantes
+- Debas justificar decisiones del modelo ante stakeholders
+
+### Usa AutoGluon cuando:
+- Tengas datos tabulares y quieras el mejor modelo automáticamente
+- No tengas experiencia en ML pero necesites buenos resultados
+- Quieras comparar múltiples modelos rápidamente
+- Trabajes con series de tiempo o datos multimodales
+
+---
+
+## 🔄 Cambiar Entre Entornos
+
+```bash
+# Ver todos tus entornos
+conda env list
+
+# Cambiar al entorno básico
+conda activate analitica-ia
+
+# Cambiar al entorno de AutoGluon
+conda activate autogluon-env
+
+# Volver al base
+conda activate base
+```
+
+---
+
+## ⚠️ Notas Importantes
+
+1. **SHAP** se puede instalar en tu entorno principal sin problemas
+2. **AutoGluon** es mejor instalarlo en su propio entorno debido a sus muchas dependencias
+3. La instalación completa de AutoGluon puede tardar 30-45 minutos
+4. Si solo necesitas una funcionalidad específica, usa la instalación modular
+
+---
+
+¡Con estas herramientas avanzadas, podrás llevar tus proyectos de ML al siguiente nivel!
