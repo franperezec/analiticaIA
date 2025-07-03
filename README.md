@@ -44,7 +44,7 @@ Para configurar tu entorno, consulta las guías de instalación en los enlaces d
 
 * **Video: SHAP with Python (Code and Explanations)**
 
-  * 🎥 [https://youtu.be/L8\_sVRhBDLU?si=jL4Ru65zecR4Y1Y9](https://youtu.be/L8_sVRhBDLU?si=jL4Ru65zecR4Y1Y9)
+  * 🎥 [https://youtu.be/L8_sVRhBDLU?si=ErdEOiaB1RPw-GNs](https://youtu.be/L8_sVRhBDLU?si=ErdEOiaB1RPw-GNs)
   * Breve: Visualizaciones SHAP (waterfall, force, beeswarm, dependence) para interpretar modelos ML.
 
 * **Documentación SHAP**
