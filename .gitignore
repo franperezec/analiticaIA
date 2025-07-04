@@ -1,0 +1,8 @@
+# Archivos específicos que no se deben subir
+beeswarm.png
+boxplot.png
+category_shap.png
+mean_shap.png
+shapmushrooms.ipynb
+standard_shap.png
+
