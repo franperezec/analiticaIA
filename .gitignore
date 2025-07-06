@@ -1,8 +1,13 @@
 # Archivos específicos que no se deben subir
-beeswarm.png
-boxplot.png
-category_shap.png
-mean_shap.png
-shapmushrooms.ipynb
-standard_shap.png
 
+shapmushrooms.ipynb
+mushrooms.csv
+
+# Archivos .png
+**.png
+
+# Archivos entornos que no se deben subir
+
+requirements1.txt
+20250706causal.yaml
+environment1.yml

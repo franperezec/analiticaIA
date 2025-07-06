@@ -1,9 +1,13 @@
-# Guía Rápida: Preparando tu Entorno de Anaconda
+# Guía Completa: Configuración de Entornos de Anaconda
 
-Este instructivo te guiará para configurar tu entorno de trabajo con las librerías necesarias para los ejercicios. **Tienes dos opciones:**
+Este instructivo te guiará para configurar tu entorno de trabajo con las librerías necesarias para todos los ejercicios del curso. **Tienes múltiples opciones según tus necesidades:**
 
-## 🔥 Opción A: Crear un Nuevo Entorno (Recomendado)
-## 🔧 Opción B: Usar un Entorno Existente
+## 🎯 Opciones de Configuración
+
+- **🔥 Opción A:** Crear un Nuevo Entorno Básico (Recomendado para principiantes)
+- **🔧 Opción B:** Usar un Entorno Existente
+- **🧠 Opción C:** Entorno para Redes Bayesianas y Análisis Causal
+- **🚀 Sección Avanzada:** SHAP y AutoGluon
 
 ---
 
@@ -25,7 +29,7 @@ Verás una lista de tus entornos. El que está activo tendrá un asterisco (`*`)
 
 ---
 
-## 🔥 OPCIÓN A: Crear un Nuevo Entorno (Recomendado)
+## 🔥 OPCIÓN A: Crear un Nuevo Entorno Básico (Recomendado)
 
 ### ¿Por qué crear un nuevo entorno?
 - Evita conflictos con otras instalaciones
@@ -37,7 +41,7 @@ Verás una lista de tus entornos. El que está activo tendrá un asterisco (`*`)
 Crea un entorno específico para el curso con Python 3.12:
 
 ```bash
-conda create -n analitica-ia python=3.12
+conda create -n analitica-ia python=3.12 -y
 ```
 
 ### Paso A2: Activar el Nuevo Entorno
@@ -52,13 +56,13 @@ Instala todo lo necesario de una vez:
 
 ```bash
 # Librerías básicas de data science
-conda install numpy pandas matplotlib seaborn scikit-learn
+conda install numpy pandas matplotlib seaborn scikit-learn -y
 
 # PyTorch para CPU (sin GPU)
-conda install pytorch torchvision torchaudio cpuonly -c pytorch
+conda install pytorch torchvision torchaudio cpuonly -c pytorch -y
 
 # Jupyter y herramientas para notebooks
-conda install jupyter ipympl -c conda-forge
+conda install jupyter ipympl -c conda-forge -y
 ```
 
 ### Paso A4: Verificación
@@ -106,18 +110,111 @@ Instala solo lo que te falte:
 
 **Si no tienes las librerías básicas:**
 ```bash
-conda install numpy pandas matplotlib seaborn scikit-learn
+conda install numpy pandas matplotlib seaborn scikit-learn -y
 ```
 
 **Si no tienes PyTorch:**
 ```bash
-conda install pytorch torchvision torchaudio cpuonly -c pytorch
+conda install pytorch torchvision torchaudio cpuonly -c pytorch -y
 ```
 
 **Si no tienes Jupyter o ipympl:**
 ```bash
-conda install jupyter ipympl -c conda-forge
+conda install jupyter ipympl -c conda-forge -y
 ```
+
+---
+
+## 🧠 OPCIÓN C: Entorno para Redes Bayesianas y Análisis Causal
+
+### ¿Cuándo usar esta opción?
+- Cuando trabajarás con los notebooks `bayes1.ipynb` y `causal_ml1.ipynb`
+- Necesitas librerías especializadas para inferencia causal
+- Quieres las herramientas más avanzadas del curso
+
+### 📋 Archivos necesarios para esta opción:
+- `environment.yml` - Configuración completa del entorno
+- `requirements.txt` - Lista de paquetes pip
+
+### C1: Usando environment.yml (Método más rápido)
+
+```bash
+# Navegar al directorio del proyecto
+cd "ruta/a/tu/proyecto/analiticaIA"
+
+# Crear entorno desde archivo
+conda env create -f environment.yml
+
+# Activar entorno
+conda activate causal_ml
+
+# Verificar instalación
+conda list
+```
+
+### C2: Usando requirements.txt (Más control)
+
+```bash
+# Crear nuevo entorno
+conda create -n causal_req python=3.13 -y
+
+# Activar entorno
+conda activate causal_req
+
+# Instalar dependencias de sistema (IMPORTANTE para gráficos)
+conda install -c conda-forge graphviz pygraphviz -y
+
+# Navegar al proyecto e instalar paquetes
+cd "ruta/a/tu/proyecto/analiticaIA"
+pip install -r requirements.txt
+
+# Registrar kernel para Jupyter
+python -m ipykernel install --user --name causal_req
+```
+
+### C3: Instalación manual paso a paso
+
+```bash
+# Crear entorno específico
+conda create -n causal_manual python=3.12 -y
+
+# Activar entorno
+conda activate causal_manual
+
+# Instalar librerías básicas
+conda install numpy pandas matplotlib seaborn scikit-learn -y
+
+# PyTorch
+conda install pytorch torchvision torchaudio cpuonly -c pytorch -y
+
+# Jupyter y herramientas
+conda install jupyter ipympl -c conda-forge -y
+
+# Dependencias para gráficos de redes (CRÍTICO para Bayes)
+conda install -c conda-forge graphviz pygraphviz -y
+
+# Librerías especializadas para análisis causal
+pip install causalnex dowhy causalml pgmpy
+
+# Librerías adicionales para redes bayesianas
+pip install networkx pyvis bnlearn
+
+# Verificar instalación
+python -c "import causalnex, dowhy, causalml, pgmpy; print('✅ Librerías causales instaladas')"
+```
+
+### C4: Configuración en Anaconda Navigator
+
+1. **Crear entorno:**
+   - **Environments** → **Create** → Nombre: `causal_ml` → Python 3.12
+2. **Instalar paquetes básicos:**
+   - Buscar e instalar: `numpy`, `pandas`, `matplotlib`, `seaborn`, `scikit-learn`
+3. **Instalar PyTorch:**
+   - Buscar `pytorch` → Seleccionar canal `pytorch` → Instalar
+4. **Instalar Jupyter:**
+   - Buscar `jupyter` → Instalar
+5. **Instalar graphviz:**
+   - Cambiar canal a `conda-forge` → Buscar `graphviz` y `pygraphviz` → Instalar
 
 ---
 
@@ -125,47 +222,62 @@ conda install jupyter ipympl -c conda-forge
 
 ### Cómo activar tu entorno cada vez
 
-**Si creaste un nuevo entorno (Opción A):**
+**Para entorno básico (Opción A):**
 ```bash
 conda activate analitica-ia
 jupyter notebook
 ```
 
-**Si usas un entorno existente (Opción B):**
+**Para entorno existente (Opción B):**
 ```bash
 conda activate base  # o tu entorno elegido
 jupyter notebook
 ```
 
-### Verificación Final
+**Para entorno causal (Opción C):**
+```bash
+conda activate causal_ml
+jupyter notebook
+```
 
-Independientemente de la opción elegida, verifica que todo esté instalado:
+### Verificación Final para Cualquier Opción
 
 ```bash
+# Ver entorno activo
+conda info --envs
+
+# Listar paquetes instalados
 conda list
+
+# Probar importaciones básicas
+python -c "
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import sklearn
+print('📊 Librerías básicas: ✅')
+"
 ```
 
-### Probar en Python
-
-Abre Python y prueba que todo funcione:
+### Probar Librerías Causales (Solo Opción C)
 
 ```bash
-python
+python -c "
+try:
+    import causalnex
+    import dowhy
+    import causalml
+    import pgmpy
+    print('🧠 Librerías causales: ✅')
+except ImportError as e:
+    print(f'❌ Error: {e}')
+"
 ```
 
-Luego ejecuta:
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import torch
-print("¡Todo instalado correctamente!")
-exit()
-```
+## ✅ Librerías Requeridas por Opción
 
-## ✅ Librerías Requeridas
-
-Al finalizar, deberías tener instalado:
-
+### **Todas las opciones incluyen:**
 - **Python 3.8+** (recomendado 3.12)
 - **NumPy** - Cálculos numéricos
 - **Pandas** - Manipulación de datos
@@ -178,28 +290,68 @@ Al finalizar, deberías tener instalado:
 - **Jupyter** - Notebooks interactivos
 - **ipympl** - Gráficos interactivos en notebooks
 
+### **Opción C (Causal) incluye además:**
+- **GraphViz** - Visualización de gráficos
+- **PyGraphViz** - Interface Python para GraphViz
+- **CausalNex** - Redes bayesianas y análisis causal
+- **DoWhy** - Framework de inferencia causal
+- **CausalML** - Machine learning causal
+- **pgmpy** - Modelos gráficos probabilísticos
+- **NetworkX** - Análisis de redes
+- **bnlearn** - Aprendizaje de redes bayesianas
+
 ---
 
 ## 🆘 Solución de Problemas
 
-### Si algo falla:
+### Problemas Generales
+
+**Si algo falla:**
 1. **Cierra** Anaconda Prompt
 2. **Abre** de nuevo como administrador
 3. **Repite** los comandos
 
-### Si los notebooks no abren:
+**Si los notebooks no abren:**
 ```bash
-conda install jupyter notebook
+conda install jupyter notebook -y
 ```
 
-### Para eliminar un entorno (solo Opción A):
+**Para eliminar un entorno problemático:**
 ```bash
-conda remove -n analitica-ia --all
+conda env remove -n nombre_entorno
 ```
 
----
+### Problemas Específicos de Librerías Causales
 
-¡Listo! Tu entorno ya está configurado con todas las herramientas necesarias para comenzar a trabajar con los notebooks.
+**Error con GraphViz en Windows:**
+```bash
+# Instalar desde conda-forge
+conda install -c conda-forge graphviz pygraphviz -y
+
+# Si persiste el error, instalar GraphViz manualmente:
+# Descargar desde: https://graphviz.org/download/
+# Agregar a PATH: C:\Program Files\Graphviz\bin
+```
+
+**Error con pygraphviz en Mac:**
+```bash
+# Instalar dependencias del sistema
+brew install graphviz
+
+# Reinstalar pygraphviz
+pip uninstall pygraphviz
+pip install pygraphviz
+```
+
+**Error "No module named 'causalnex'":**
+```bash
+# Verificar entorno activo
+conda info --envs
+
+# Reinstalar en el entorno correcto
+conda activate causal_ml
+pip install causalnex dowhy causalml pgmpy
+```
 
 ---
 
@@ -218,17 +370,16 @@ Esta sección es **opcional** y está dirigida a usuarios que necesiten herramie
 ### Instalación de SHAP
 
 ```bash
-# Activar tu entorno (el que creaste arriba o uno existente)
-conda activate analitica-ia
+# Activar tu entorno (cualquiera de las opciones A, B o C)
+conda activate analitica-ia  # o causal_ml
 
 # Instalar SHAP
-conda install conda-forge::shap
+conda install conda-forge::shap -y
 ```
 
 ### Verificar instalación:
-```python
-import shap
-print("SHAP instalado correctamente")
+```bash
+python -c "import shap; print('SHAP instalado correctamente')"
 ```
 
 ---
@@ -281,7 +432,7 @@ git clone https://github.com/autogluon/autogluon
 cd autogluon && ./full_install.sh
 ```
 
-### Instalación Modular de AutoGluon
+### Instalación Modular de AutoGluon (Recomendado)
 
 Si no necesitas todas las funcionalidades, puedes instalar solo lo que necesites:
 
@@ -327,18 +478,26 @@ pip install autogluon.tabular[all,skl2onnx]
 ```
 
 ### Verificar instalación de AutoGluon:
-```python
+```bash
+python -c "
 # Para tabular
 from autogluon.tabular import TabularPredictor
-print("AutoGluon Tabular instalado")
+print('AutoGluon Tabular: ✅')
 
 # Para series de tiempo
-from autogluon.timeseries import TimeSeriesPredictor
-print("AutoGluon TimeSeries instalado")
+try:
+    from autogluon.timeseries import TimeSeriesPredictor
+    print('AutoGluon TimeSeries: ✅')
+except ImportError:
+    print('AutoGluon TimeSeries: ❌ (no instalado)')
 
 # Para multimodal
-from autogluon.multimodal import MultiModalPredictor
-print("AutoGluon MultiModal instalado")
+try:
+    from autogluon.multimodal import MultiModalPredictor
+    print('AutoGluon MultiModal: ✅')
+except ImportError:
+    print('AutoGluon MultiModal: ❌ (no instalado)')
+"
 ```
 
 ---
@@ -356,33 +515,93 @@ print("AutoGluon MultiModal instalado")
 - Quieras comparar múltiples modelos rápidamente
 - Trabajes con series de tiempo o datos multimodales
 
+### Usa las Librerías Causales cuando:
+- Necesites inferir relaciones causa-efecto en tus datos
+- Trabajes con redes bayesianas
+- Quieras estimar efectos de tratamientos o intervenciones
+- Analices datos observacionales donde la correlación no implica causalidad
+
 ---
 
-## 🔄 Cambiar Entre Entornos
+## 🔄 Gestión Completa de Entornos
 
+### Ver todos tus entornos:
 ```bash
-# Ver todos tus entornos
 conda env list
+```
 
-# Cambiar al entorno básico
+### Cambiar entre entornos:
+```bash
+# Entorno básico
 conda activate analitica-ia
 
-# Cambiar al entorno de AutoGluon
+# Entorno causal
+conda activate causal_ml
+
+# Entorno AutoGluon
 conda activate autogluon-env
 
 # Volver al base
 conda activate base
 ```
 
+### Eliminar entornos:
+```bash
+# Eliminar entorno específico
+conda env remove -n nombre_entorno
+
+# Confirmar eliminación
+conda env list
+```
+
+### Exportar entornos para compartir:
+```bash
+# Activar entorno que quieres exportar
+conda activate causal_ml
+
+# Exportar configuración completa
+conda env export > entorno_causal.yml
+
+# Exportar solo paquetes principales
+conda env export --no-builds > entorno_causal_limpio.yml
+```
+
+### Clonar entornos:
+```bash
+# Clonar entorno existente
+conda create --name nuevo_entorno --clone entorno_existente
+```
+
 ---
 
 ## ⚠️ Notas Importantes
 
-1. **SHAP** se puede instalar en tu entorno principal sin problemas
+1. **SHAP** se puede instalar en cualquier entorno sin problemas
 2. **AutoGluon** es mejor instalarlo en su propio entorno debido a sus muchas dependencias
-3. La instalación completa de AutoGluon puede tardar 30-45 minutos
-4. Si solo necesitas una funcionalidad específica, usa la instalación modular
+3. **Librerías causales** requieren GraphViz para visualizaciones - asegúrate de instalarlo
+4. La instalación completa de AutoGluon puede tardar 30-45 minutos
+5. Si solo necesitas una funcionalidad específica, usa la instalación modular
+6. Los entornos consumen espacio en disco - elimina los que no uses
 
 ---
 
-¡Con estas herramientas avanzadas, podrás llevar tus proyectos de ML al siguiente nivel!
+## 🎯 Recomendaciones Finales
+
+### Para principiantes:
+- Empieza con **Opción A** (entorno básico)
+- Agrega SHAP cuando necesites interpretabilidad
+- Considera la **Opción C** solo cuando trabajes con análisis causal
+
+### Para usuarios avanzados:
+- Usa **Opción C** si trabajas con causalidad desde el inicio
+- Crea entornos específicos para proyectos diferentes
+- Mantén un entorno base limpio para experimentación
+
+### Para el curso:
+- **Notebooks básicos**: Cualquier opción (A o B)
+- **bayes1.ipynb y causal_ml1.ipynb**: Requieren Opción C
+- **Proyectos avanzados**: Considera AutoGluon
+
+---
+
+¡Con esta guía completa, tendrás todas las herramientas necesarias para aprovechar al máximo el curso de Analítica de Datos e IA!

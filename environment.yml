@@ -1,0 +1,43 @@
+name: causal_ml
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.13
+  - pip
+  
+  # Core scientific computing
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - scikit-learn
+  
+  # Jupyter environment
+  - jupyter
+  - notebook
+  - ipykernel
+  - ipywidgets
+  
+  # Statistical analysis
+  - statsmodels
+  
+  # Graph and visualization
+  - networkx=3.1  # Version específica compatible con dowhy
+  - graphviz
+  - pygraphviz
+  
+  # Dependencies for causal analysis
+  - dowhy=0.8
+  
+  - pip:
+      # Bayesian networks
+      - pgmpy==1.0.0
+      - bayespy
+      
+      # Additional visualization
+      - pyvis
+      - pydot
+      
+      # Utilities
+      - tqdm
