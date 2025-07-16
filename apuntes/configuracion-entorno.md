@@ -148,6 +148,9 @@ conda env create -f environment.yml
 # Activar entorno
 conda activate causal_ml
 
+# Librerías gráficos causales
+pip install git+https://github.com/py-why/causal-learn.git
+
 # Verificar instalación
 conda list
 ```
@@ -163,6 +166,7 @@ conda activate causal_req
 
 # Instalar dependencias de sistema (IMPORTANTE para gráficos)
 conda install -c conda-forge graphviz pygraphviz -y
+pip install git+https://github.com/py-why/causal-learn.git
 
 # Navegar al proyecto e instalar paquetes
 cd "ruta/a/tu/proyecto/analiticaIA"
